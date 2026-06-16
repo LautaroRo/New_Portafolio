@@ -5,7 +5,6 @@
   /* Centrado vertical restando el alto aproximado de la navbar */
   min-height: calc(100vh - 180px); 
   padding: 40px 20px;
-  background-color: #000;
 }
 
 .info-content {

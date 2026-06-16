@@ -64,18 +64,20 @@ import NavGuia from "../components/navguia/intex.tsx";
 import Habilidades from "../components/habilidades/index.tsx";
 import Proyectos from "../components/proyectos/index.tsx";
 import Contacto from "../components/contacto/index.tsx";
+import Switch from "@/src/context/switch.tsx";
 
 export default function MainPage() {
   const [theme, setTheme] = useState("default");
 
   return (
-    <>
+  <div className="min-h-screen bg-black/30 text-white">
       <Navbar />
       <Info />
-      <NavGuia/>
-      <Habilidades/>
-      <Proyectos/>
-      <Contacto/>
-    </>
+      <NavGuia />
+      <Habilidades />
+      <Proyectos />
+      <Contacto />
+      <Switch />
+    </div>
   );
 }

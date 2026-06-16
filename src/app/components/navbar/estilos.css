@@ -5,7 +5,6 @@ body { background: #000; color: #fff; font-family: 'Inter', sans-serif; }
   display: flex;
   flex-direction: column;
   padding: 30px 50px;
-  background-color: #1a1a1a;
   gap: 20px;
 }
 
@@ -78,7 +77,6 @@ body { background: #000; color: #fff; font-family: 'Inter', sans-serif; }
   display: flex;
   flex-direction: column;
   padding: 30px 0; /* Quitamos el padding horizontal de aquí */
-  background-color: #000;
   gap: 20px;
   width: 100%;
   align-items: center; 

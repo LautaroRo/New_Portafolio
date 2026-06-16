@@ -1,7 +1,7 @@
 "use client";
 import "./estilos.css";
 
-export default function MainPage() {
+export default function NavBar() {
   return (
     <nav className="navbar">
       <div className="nav-container">

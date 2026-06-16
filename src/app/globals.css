@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
+/* --- 1. Variables Base --- */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --accent: #3b82f6; /* Tu color de "Traje" */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* --- 2. Estilos Globales --- */
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background 0.3s ease;
+  margin: 0;
+}
+
+/* --- 3. Fondo de Video (Oculto por defecto) --- */
+.minecraft-video-bg {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* --- 4. Modo Minecraft: Aquí ocurre la magia --- */
+body.minecraft-mode {
+  background: transparent !important;
+}
+
+body.minecraft-mode .minecraft-video-bg {
+  display: block;
+}
+
+/* 4.1. Transformación automática de botones (Sin tocar el .tsx) */
+body.minecraft-mode button, 
+body.minecraft-mode .btn-cta {
+  font-family: 'Minecraft', sans-serif !important;
+  color: #fff !important;
+  border: 3px solid #000 !important;
+  border-radius: 0 !important; /* Cuadrados como Minecraft */
+  box-shadow: inset -2px -2px 0px #333, inset 2px 2px 0px #ddd !important;
+  text-shadow: 2px 2px #000;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+body.minecraft-mode button:hover, 
+body.minecraft-mode .btn-cta:hover {
+  background-color: rgba(160, 160, 160, 0.9) !important;
+  box-shadow: inset -2px -2px 0px #555, inset 2px 2px 0px #fff !important;
+}
+
+/* 4.2. Estilos para contenedores en modo Minecraft */
+body.minecraft-mode .navbar,
+body.minecraft-mode .habilidades-container,
+body.minecraft-mode .project-card {
+}
+
+/* --- 5. Botón Switch Flotante --- */
+.switch-btn {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  z-index: 9999;
+  background: #1a1a1a;
+  color: #fff;
+  border: 1px solid #333;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+@font-face {
+  font-family: 'MinecraftFont';
+  /* La ruta es /fonts/minecraft.ttf porque está dentro de public/fonts/ */
+  src: url('/fonts/minecraft.ttf') format('truetype');
+  font-display: swap;
+}
+
+body.minecraft-mode, 
+body.minecraft-mode * {
+  font-family: 'MinecraftFont', sans-serif !important;
+  image-rendering: pixelated !important;
+  text-shadow: 2px 2px 0px #000 !important;
 }

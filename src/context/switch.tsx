@@ -1,11 +1,12 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import "./estilos.css";
 
 export default function Switch() {
+  // Empezamos en false (Modo Traje activo)
   const [isMinecraft, setIsMinecraft] = useState(false);
 
-  // Cada vez que isMinecraft cambia, actualizamos el body
   useEffect(() => {
     if (isMinecraft) {
       document.body.classList.add('minecraft-mode');
@@ -19,15 +20,14 @@ export default function Switch() {
       onClick={() => setIsMinecraft(!isMinecraft)} 
       className="switch-btn"
     >
+      {/* Si isMinecraft es false, mostramos el icono de Minecraft para invitarte a cambiar */}
       {isMinecraft ? (
         <>
-          <Image src="/iconos/minecraft_logo.png" alt="Minecraft" width={24} height={24} />
-          <span>Modo Minecraft</span>
+          <span>👔</span>
         </>
       ) : (
         <>
-          <span>👔</span>
-          <span>Modo Traje</span>
+          <Image src="/iconos/minecraft_logo.png" alt="Minecraft" width={24} height={24} />
         </>
       )}
     </button>
