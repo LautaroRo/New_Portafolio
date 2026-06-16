@@ -1,0 +1,62 @@
+/* 
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  --minecraft-font: 'Press Start 2P', cursive;
+  --minecraft-bg: #8b8b8b;
+  --minecraft-border: #373737;
+}
+
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  background: #121212;
+  color: white;
+  transition: all 0.5s ease;
+}
+
+
+[data-theme='minecraft'] {
+  font-family: var(--minecraft-font);
+}
+
+[data-theme='minecraft'] button {
+  background-color: var(--minecraft-bg);
+  border: 4px solid var(--minecraft-border);
+  color: white;
+  text-transform: uppercase;
+  padding: 15px;
+  cursor: pointer;
+  font-family: var(--minecraft-font);
+  font-size: 0.6rem;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+[data-theme='minecraft'] .title {
+  text-shadow: 4px 4px #000;
+}
+
+.video-fondo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+}
+
+
+.sidebar { padding: 40px; width: 300px; background: rgba(0,0,0,0.4); z-index: 1; }
+.main-content { flex: 1; padding: 60px; z-index: 1; }
+.nav a { display: block; color: inherit; text-decoration: none; margin-bottom: 20px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.card { border: 2px solid #444; padding: 25px; background: rgba(0,0,0,0.3); }
+
+button { padding: 10px; cursor: pointer; } */
+
+
