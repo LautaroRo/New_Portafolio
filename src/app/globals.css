@@ -17,14 +17,16 @@ body {
 }
 
 /* --- 3. Fondo de Video (Oculto por defecto) --- */
-.minecraft-video-bg {
-  display: none;
+.global-bg-video {
   position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  object-fit: cover;
+  top: 0;
+  left: 0;
+  width: 100vw;   /* 100% del ancho de la vista */
+  height: 100vh;  /* 100% del alto de la vista */
+  object-fit: cover; /* Esto es clave: "recorta" el video para llenar sin deformarlo */
   z-index: -1;
+  pointer-events: none; /* Para que no puedas hacer clic en el video por error */
 }
-
 /* --- 4. Modo Minecraft: Aquí ocurre la magia --- */
 body.minecraft-mode {
   background: transparent !important;
@@ -86,4 +88,175 @@ body.minecraft-mode * {
   font-family: 'MinecraftFont', sans-serif !important;
   image-rendering: pixelated !important;
   text-shadow: 2px 2px 0px #000 !important;
+}
+
+
+/* --- 6. Modo Silent Hill 2 --- */
+
+/* --- 6. Modo Silent Hill 2 --- */
+
+/* IMPORTANTE:
+   NO usar filter en body porque rompe los position: fixed
+*/
+
+/* 6.1. Filtro visual */
+body.silenthill-mode::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: 9997;
+
+  backdrop-filter: sepia(0.3)
+                   contrast(1.1)
+                   saturate(0.8);
+}
+
+/* 6.2. Oscurecemos la pantalla */
+body.silenthill-mode::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.4);
+
+  pointer-events: none;
+  z-index: 9996;
+}
+
+/* 6.3. Tipografía */
+body.silenthill-mode,
+body.silenthill-mode * {
+  font-family: 'NotoSerif', serif !important;
+  color: #e0e0e0 !important;
+  letter-spacing: 0.5px;
+}
+
+/* 6.4. Botones */
+body.silenthill-mode button,
+body.silenthill-mode .btn-cta {
+  background: rgba(40, 40, 40, 0.8) !important;
+  border: 1px solid #666 !important;
+  border-radius: 0 !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.4s ease;
+  color: #aaa !important;
+}
+
+body.silenthill-mode button:hover,
+body.silenthill-mode .btn-cta:hover {
+  background: rgba(100, 20, 20, 0.6) !important;
+  border-color: #f00 !important;
+  color: #fff !important;
+}
+
+/* 6.5. Ventanas y navbar */
+
+
+/* --- 7. Modo The Last of Us --- */
+
+/* 7.1. Fuente de TLOU */
+@font-face {
+  font-family: 'PressGothic';
+  src: url('/fonts/pressgothic.otf') format('truetype');
+  font-display: swap;
+}
+
+/* 7.2. Ajuste visual general (Tono frío y verdoso) */
+body.tlou-mode {
+  background: #1a1a1a !important; /* Un tono oscuro base */
+  color: #d1d5db !important;      /* Gris claro para legibilidad */
+}
+
+/* Aplicamos tipografía solo a elementos clave para no romper otros componentes */
+body.tlou-mode h1, 
+body.tlou-mode h2, 
+body.tlou-mode h3, 
+body.tlou-mode .titulo-seccion {
+  font-family: 'PressGothic', sans-serif !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* 7.3. Estilo de Botones (Minimalistas y rugosos) */
+body.tlou-mode button,
+body.tlou-mode .btn-cta {
+  border: 1px solid #4b5563 !important;
+  border-radius: 0 !important;
+  color: #e5e7eb !important;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+}
+
+body.tlou-mode button:hover,
+body.tlou-mode .btn-cta:hover {
+  background-color: #00000025;
+  color: rgb(216, 211, 211) !important;
+}
+
+/* 7.4. Fondo semi-transparente para ventanas para ver mejor el paisaje */
+/* 7.4. Contenedores limpios (sin background ni blur) */
+body.tlou-mode .navbar,
+body.tlou-mode .habilidades-container {
+  background: transparent !important; /* Sacamos el fondo oscuro */
+  backdrop-filter: none !important;    /* Sacamos el blur */
+  border-left: none !important;        /* Si querés quitar también la línea verde */
+  box-shadow: none !important;         /* Quitamos cualquier sombra que oscurezca */
+}
+
+
+
+/* --- 8. Modo Red Dead Redemption 2 --- */
+
+/* 8.1. Estética visual general */
+@font-face {
+  font-family: 'ChineseRocks';
+  src: url('/fonts/chineserocksrg.otf') format('opentype');
+  font-display: swap;
+}
+
+/* 8.1. Estética visual general */
+body.reddead-mode {
+  background-color: #1a1614 !important; 
+  color: #d6ccc2 !important;            
+  font-family: 'ChineseRocks', serif !important;
+}
+
+
+/* 8.2. Botones: Estilo neutral (fuera el rojo) */
+body.reddead-mode button, 
+body.reddead-mode .btn-cta {
+  color: #d6ccc2 !important;                   /* Texto color papel */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* 8.3. Hover: Cambio sutil, nada de rojo quemado */
+body.reddead-mode button:hover, 
+body.reddead-mode .btn-cta:hover {
+  background: rgba(70, 60, 50, 0.9) !important; /* Un tono un poco más claro al pasar el mouse */
+  border-color: #a09585 !important;             /* Un gris más cálido */
+  transform: scale(1.02);                       /* Zoom suave */
+}
+
+/* 8.4. Contenedores minimalistas */
+
+/* 8.5. Filtro cinematográfico */
+/* 8.5. Ajuste mejorado para que el video se vea nítido */
+body.reddead-mode .global-bg-video {
+  /* Quitamos el sepia fuerte y usamos un filtro más balanceado */
+  filter: contrast(1.15) brightness(0.85) saturate(1.1);
+  /* Aseguramos la máxima calidad de renderizado */
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* 8.6. Forzar fuente */
+body.reddead-mode, 
+body.reddead-mode * {
+  font-family: 'ChineseRocks', serif !important;
 }

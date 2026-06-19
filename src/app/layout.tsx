@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+// Providers
+import { SoundtrackProvider } from "./../context/soundtrack/index.tsx"; 
+import { ThemeProvider } from "./../context/tema/index.tsx";
+import Radio from "./../context/radio/index.tsx";
+import BackgroundVideo from "./components/background/index.tsx";
+import ClickSoundProvider from "./components/clicksound";
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
@@ -14,11 +20,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        {/* Fondo de video */}
-        <video autoPlay loop muted playsInline className="minecraft-video-bg">
-          <source src="/fondos_img/Video Minecraft.mp4" type="video/mp4" />
-        </video>
-        {children}
+        <ThemeProvider>
+          <SoundtrackProvider>
+            <ClickSoundProvider> {/* <-- Lo colocamos aquí */}
+              
+              <BackgroundVideo />
+              {children}
+              <Radio />
+
+            </ClickSoundProvider>
+          </SoundtrackProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
